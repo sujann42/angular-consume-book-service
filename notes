@@ -1,0 +1,19 @@
+1) Create a service and create a list called book and an object of HttpClient inside the constructor.
+  books: any;
+  constructor(private http: HttpClient) { }
+2) create a method inside the service and call the rest api with that service
+getBooks() {
+    return this.http.get('http://localhost:8080/findAllBooks');
+  }
+3) go to the component that consumes that rest api and import Service on that component and call the method
+import {BookService} from '../book.service';
+
+4) On the component, create an object of the Service
+constructor(private bookService: BookService) { }
+
+4) Using the object of the service call the method which is in the service.
+5) Set the response to an object for the visualization purpose.
+ngOnInit() {
+    const response = this.bookService.getBooks();
+    response.subscribe((data) => this.books = data);
+  }
